@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="style 1.css">
+   <title>complete responsive hotel booking website design tutorial</title>
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <!-- custom css file link  -->
+   
+
+</head>
+<body>
+   
+<!-- header section starts  -->
+
+<section class="header">
+
+   <div class="flex">
+      <a href="#home" class="logo">LOGEMENT DES ÉTUDIANTS</a>
+      <a href="#availability" class="btn">LOGEMENTS DISPONIBLES A LA LOCATION</a>
+      <div id="menu-btn" class="fas fa-bars"></div>
+   </div>
+
+   <nav class="navbar">
+      <a href="#home">ACCUEIL</a>
+      <a href="#about">A PROPOS DE NOUS</a>
+      <a href="loginay.html">RÉSERVER</a>
+      <a href="#gallery">GALLERIE</a>
+      <a href="#contact">CONTACTER-NOUS</a>
+      <a href="#VISITER-AUSSI">VISITER-AUSSI</a>
+   </nav>
+
+</section>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+   <div class="swiper home-slider">
+
+      <div class="swiper-wrapper">
+
+         <div class="box swiper-slide">
+            <img src="img-1.jpg" alt="">
+            <div class="flex">
+               <h3>Installez-vous dans des endroits comfortables ! Vivez votre vie estudiante sans souci !</h3>
+               <a href="#availability" class="btn">EXPLORER</a>
+            </div>
+         </div>
+
+         <div class="box swiper-slide">
+            <img src="img-2.jpg" alt="">
+            <div class="flex">
+               <h3>foods and drinks</h3>
+               <a href="#reservation" class="btn">make a reservation</a>
+            </div>
+         </div>
+
+         <div class="box swiper-slide">
+            <img src="img-3.jpg" alt="">
+            <div class="flex">
+               <h3>luxurious halls</h3>
+               <a href="#contact" class="btn">contact us</a>
+            </div>
+         </div>
+
+      </div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+
+   </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- availability section starts  -->
+
+<section class="availability" id="availability">
+
+   <form action="" method="post">
+      <div class="flex">
+         <div class="box">
+            <p>à partir de <span>*</span></p>
+            <input type="date" name="check_in" class="input" required>
+         </div>
+         <div class="box">
+            <p>jusqu'à<span>*</span></p>
+            <input type="date" name="check_out" class="input" required>
+         </div>
+         <div class="box">
+            <p>type de logement <span>*</span></p>
+            <select name="adults" class="input" required>
+               <option value="-"></option>
+               <option value="1">foyer privé</option>
+               <option value="2">foyer étatique</option>
+               <option value="3">appartement</option>
+               <option value="4">studio</option>
+               <option value="5">maison</option>
+               <option value="6">maison de luxe</option>
+            </select>
+         </div>
+         <div class="box">
+            <p>établissement<span>*</span></p>
+            <select name="childs" class="input" required>
+               <option value="-"></option>
+               <option value="1">ECOLE NATIONALE D'INGÉNIEURS DE GABÈS</option>
+               <option value="2">INSTITUT SUPÉRIEUR DES SCIENCES APPLIQUÉES ET DE TECHNOLOGIE DE GABÈS</option>
+               <option value="3">INSTITUT SUPÉRIEUR DES ETUDES JURIDIQUES DE GABÈS</option>
+               <option value="4">FACULTÉ DES SCIENCES DE GABÈS</option>
+               <option value="5">INSTITUT SUPÉRIEUR D'INFORMATIQUE ET DE MULTIMÉDIA DE GABÈS</option>
+               <option value="6">INSTITUT SUPÉRIEUR DE GESTION DE GABÈS</option>
+            </select>
+         </div>
+         <div class="box">
+            <p>nbr des personnes<span>*</span></p>
+            <select name="rooms" class="input" required>
+               <option value="-"></option>
+               <option value="1">1 personne</option>
+               <option value="2">2 personnes</option>
+               <option value="3">3 personnes</option>
+               <option value="4">4 personnes</option>
+               <option value="5">5 personnes</option>
+               <option value="6">6 personnes</option>
+            </select>
+         </div>
+      </div>
+      <input type="submit" value="commencer la recherche" name="check" class="btn">
+   </form>
+
+</section>
+
+<!-- availability section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+   <div class="row">
+      <div class="image">
+         <img src="img-1.jpg" alt="">
+      </div>
+      <div class="content">
+         <h3>Un Large Choix</h3>
+         <p>notre site vous offre une large sélection de logements pour répondre à tous vos besoins pendant vos études. Que vous cherchiez une chambre privée ou une colocation, nous avons ce qu'il vous faut. Tous nos logements sont soigneusement sélectionnés pour offrir le confort, la sécurité et la commodité. </p>
+         <a href="#reservation" class="btn">reserver maintenant</a>
+      </div>
+   </div>
+
+   <div class="row revers">
+      <div class="image">
+         <img src="img-2.jpg" alt="">
+      </div>
+      <div class="content">
+         <h3>Des chambres et des appartements accueillants tout autour du votre établissement!</h3>
+         <p>Nous comprenons que la vie étudiante peut être stressante, c'est pourquoi nous sommes là pour vous aider à trouver votre logement idéal afin que vous puissiez vous concentrer sur ce qui compte vraiment - vos études et votre vie estudiante-. Nous sommes là pour vous accompagner tout au long du processus de location et pour répondre à toutes vos questions. </p>
+         <a href="#contact" class="btn">contacter nous</a>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="image">
+         <img src="img-3.jpg" alt="">
+      </div>
+      <div class="content">
+         <h3>Gagner du temps et d'argent!</h3>
+         <p>nous travaillons avec plus de 200 des partenaires pour mettre à votre disposition le meilleur choix et la plus large sélection de locations d'appartements meublés avec des prix raisonnables à moyen ou long terme à Gabès.
+                        
+            Nous travaillons uniquement avec des partenaires de confiance pour mettre à votre disposition les offres les plus sûres et les plus à jour.
+            Nous comparons des milliers d'annonces de location d'appartements meublés ,filtrez par quartier, et consultez les différentes annonces indiqués sur le site</p>
+         <a href="#availability" class="btn">voir les disponibilités</a>
+      </div>
+   </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- services section starts  -->
+
+<section class="services">
+
+   <div class="box-container">
+
+      <div class="box">
+         <img src="cadena.png" alt="">
+         <h3>Sécurité</h3>
+         <p>les appartements peuvent offrir un niveau de sécurité plus élevé que les maisons individuelles, car les immeubles peuvent être équipés de systèmes de sécurité tels que des caméras de surveillance, des interphones et des portes verrouillées.</p>
+      </div>
+
+      <div class="box">
+         <img src="cout.png" alt="">
+         <h3>Coût </h3>
+         <p>les appartements sont souvent moins chers que les maisons individuelles, ce qui peut être un avantage financier pour les locataires.</p>
+      </div>
+
+      <div class="box">
+         <img src="ville.jpeg" alt="">
+         <h3>Commodité</h3>
+         <p>Les appartements sont souvent situés dans des zones urbaines où les commodités comme les magasins, les restaurants et les transports en commun sont facilement accessibles.</p>
+      </div>
+
+      <div class="box">
+         <img src="icon-4.png" alt="">
+         <h3>Flexibilité </h3>
+         <p>es appartements offrent souvent une plus grande flexibilité en termes de durée de location, ce qui peut être un avantage pour les locataires qui ont besoin de déménager fréquemment ou qui ont besoin d'une location à court terme.</p>
+      </div>
+
+      <div class="box">
+         <img src="communaute.jpeg" alt="">
+         <h3>Communauté</h3>
+         <p>les appartements offrent souvent la possibilité de rencontrer des voisins et de se connecter avec d'autres personnes dans la communauté, ce qui peut être un avantage social pour les locataires.</p>
+      </div>
+
+      <div class="box">
+         <img src="amusement.jpg" alt="">
+         <h3>Équipements</h3>
+         <p>de nombreux appartements offrent des équipements tels que des piscines, des salles de sport, des salles de jeux, des espaces extérieurs, des buanderies, etc. Ces équipements peuvent ajouter une valeur supplémentaire à la location.</p>
+      </div>
+
+   </div>
+
+</section>
+
+<!-- services section ends -->
+
+<!-- reservation section starts  -->
+
+<section class="reservation" id="reservation">
+
+   <form action="" method="post">
+      <h3>faire une reservation</h3>
+      <div class="flex">
+         <div class="box">
+            <p>date d'entrée <span>*</span></p>
+            <input type="date" name="date d'entrée" class="input" required>
+         </div>
+         <div class="box">
+            <p>date de sortie <span>*</span></p>
+            <input type="date" name="date de sortie" class="input" required>
+         </div>
+         <div class="box">
+            <p>adultes <span>*</span></p>
+            <select name="adultes" class="input" required>
+               <option value="1">1 adult</option>
+               <option value="2">2 adults</option>
+               <option value="3">3 adults</option>
+               <option value="4">4 adults</option>
+               <option value="5">5 adults</option>
+               <option value="6">6 adults</option>
+            </select>
+         </div>
+         <div class="box">
+            <p>enfants<span>*</span></p>
+            <select name="enfants" class="input" required>
+               <option value="-">0 child</option>
+               <option value="1">1 child</option>
+               <option value="2">2 childs</option>
+               <option value="3">3 childs</option>
+               <option value="4">4 childs</option>
+               <option value="5">5 childs</option>
+               <option value="6">6 childs</option>
+            </select>
+         </div>
+         <div class="box">
+            <p>chambres <span>*</span></p>
+            <select name="chambres" class="input" required>
+               <option value="1">1 room</option>
+               <option value="2">2 rooms</option>
+               <option value="3">3 rooms</option>
+               <option value="4">4 rooms</option>
+               <option value="5">5 rooms</option>
+               <option value="6">6 rooms</option>
+            </select>
+         </div>
+      </div>
+      <input type="submit" value="vérifier la disponibilité" name="check" class="btn">
+   </form>
+
+</section>
+
+<!-- reservation section ends -->
+
+<!-- gallery section starts  -->
+
+<section class="gallery" id="gallery">
+
+   <div class="swiper gallery-slider">
+      <div class="swiper-wrapper">
+         <img src="*img-1.jpg" class="swiper-slide" alt="">
+         <img src="*img-2.webp" class="swiper-slide" alt="">
+         <img src="*img-3.webp" class="swiper-slide" alt="">
+         <img src="*img-4.webp" class="swiper-slide" alt="">
+         <img src="*img-5.webp" class="swiper-slide" alt="">
+         <img src="*img-6.webp" class="swiper-slide" alt="">
+      </div>
+      <div class="swiper-pagination"></div>
+   </div>
+
+</section>
+
+<!-- gallery section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+   <div class="row">
+
+      <form action="" method="post">
+         <h3>envoyez nous un message</h3>
+         <input type="text" name="name" required maxlength="50" placeholder="entrer votre nom" class="box">
+         <input type="email" name="email" required maxlength="50" placeholder="entrer votre addresse email" class="box">
+         <input type="number" name="number" required maxlength="10" min="0" max="9999999999" placeholder="entrer votre numéro téléphonique" class="box">
+         <textarea name="msg" class="box" required maxlength="1000" placeholder="entrer votre  message" cols="30" rows="10"></textarea>
+         <input type="submit" value="envoyer le message" name="envoyer" class="btn">
+      </form>
+
+      <div class="faq">
+         <h3 class="title">Les plus fréquentes questions proposées</h3>
+         <div class="box active">
+            <h3>Quels sont les services publics inclus dans le loyer ?</h3>
+            <p>Les services publics inclus dans le loyer sont l'eau, le gaz et l'électricité.</p>
+         </div>
+         <div class="box">
+            <h3>Y a-t-il des frais supplémentaires à payer en plus du loyer mensuel ?</h3>
+            <p> Non, il n'y a pas de frais supplémentaires à payer en plus du loyer mensuel, sauf si vous causez des dommages à l'appartement.</p>
+         </div>
+         <div class="box">
+            <h3>Est-il possible de sous-louer l'appartement </h3>
+            <p>Non, il n'est pas possible de sous-louer l'appartement.c'est strictement interdit</p>
+         </div>
+         <div class="box">
+            <h3>Comment se passe la procédure de paiement du loyer ?</h3>
+            <p>La procédure de paiement du loyer consiste à verser le loyer mensuel avant la date d'échéance convenue.</p>
+         </div>
+         <div class="box">
+            <h3>Est-il autorisé d'avoir des animaux domestiques dans l'appartement ?</h3>
+            <p>heureusement, les animaux domestiques  sont autorisés dans l'appartement.</p>
+         </div>
+      </div>
+
+   </div>
+
+</section>
+
+
+
+
+<section class="footer">
+
+   <div class="box-container">
+
+      <div class="box">
+         <a href="tel:1234567890"><i class="fas fa-phone"></i> +216-92709397</a>
+         <a href="tel:1112223333"><i class="fas fa-phone"></i> +216-29196616</a>
+         <a href="mailto:shakhanas@gmail.com"><i class="fas fa-envelope"></i> logement.etudiants@gmail.com</a>
+         <a href="mailto:anasbhai@gmail.com"><i class="fas fa-envelope"></i> logement.etudiants@gmail.com</a>
+         <a href="#"><i class="fas fa-map-marker-alt"></i> gabés, zrig , avenue omar ibn el khattab</a>
+      </div>
+
+      <div class="box">
+         <a href="#home">home</a>
+         <a href="#about">about</a>
+         <a href="bookings.php">my bookings</a>
+         <a href="#reservation">reservation</a>
+         <a href="#gallery">gallery</a>
+         <a href="#contact">contact</a>
+         <a href="#reviews">reviews</a>
+      </div>
+
+      <div class="box">
+         <a href="#">facebook <i class="fab fa-facebook-f"></i></a>
+         <a href="#">twitter <i class="fab fa-twitter"></i></a>
+         <a href="#">instagram <i class="fab fa-instagram"></i></a>
+         <a href="#">linkedin <i class="fab fa-linkedin"></i></a>
+         <a href="#">youtube <i class="fab fa-youtube"></i></a>
+      </div>
+
+   </div>
+
+   <div class="credit">&copy; 2022-2023</div>
+
+</section>
+
+
+<!-- footer section ends -->
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="script.js"></script>
+<script src="admin_script.js"></script>
+</body>
+</html>

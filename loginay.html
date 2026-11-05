@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+
+
+
+
+
+  <title> SignUp/SignIn Form</title>
+  
+  
+  
+  
+<style>
+/*DEFAULT*/
+input,button,::placeholder,a,form,::-webkit-input-placeholder{
+transition:0.5s;
+color:#fff;
+}
+a{
+text-decoration:none;
+cursor:pointer;
+}
+
+
+/*ANIMATION*/
+.animate {
+-webkit-animation: animatezoom 0.6s;
+animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+from {-webkit-transform: scale(0)} 
+to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+from {transform: scale(0)} 
+to {transform: scale(1)}
+}
+
+body{
+margin:0;
+background-image:url("https://source.unsplash.com/featured/?house");
+background-repeat:no-repeat;
+background-size:cover;
+width:100%;
+height:100%;
+}
+
+*, *:after, *:before {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+.Signup_Form{
+width:100%;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+font-family: 'Recursive', sans-serif;
+}
+
+.Signup_Form form{
+width:60%;
+box-shadow:0px 6px 16px -6px rgba(1,1,1,0.5);
+border-radius:3px;
+background:rgba(1,1,1,0.5);
+padding:30px;
+text-align:center;
+position:relative;
+}
+
+.Signup_Form .fa-save{
+padding:10px;
+background:#000;
+border:1px solid #fff;
+border-radius:50%;
+color:#fff;
+text-align:center;
+float:right;
+position:absolute;
+right:-10px;
+top:-10px;
+}
+
+.Signup_Form form:hover{
+background:rgba(1,1,1,1);
+}
+
+.Signup_Form input{
+width:90%;
+padding:10px;
+background:transparent;
+display:block;
+outline:none;
+border:0;
+border-bottom:1px solid rgba(255,255,255,0.5);
+margin:20px 0px;
+}
+
+.Signup_Form input:hover{
+border-bottom:1px solid rgba(255,255,255,1);
+}
+
+.Signup_Form .btn1{
+width:150px;
+padding:10px 20px;
+text-align:center;
+background:transparent;
+border:1px solid #fff;
+color:#fff;
+outline:none;
+display:block;
+margin:20px 0px;
+}
+
+.Signup_Form .btn1:hover{
+background:#fff;
+color:#000;
+}
+
+input:focus::placeholder,input:focus::-webkit-input-placeholder  {
+position:relative;
+top:-10px; 
+font-size:12px;
+color:rgba(255,255,255,0.5);
+}
+
+.Signup_Form form section{
+width:100%;
+margin:40px 0;
+}
+
+.Signup_Form form section span{
+width:50%;
+}
+
+.Signup_Form form section span a:hover{
+color:rgba(255,255,255,0.5);
+}
+
+.Signup_Form form section span:nth-child(1){
+float:left;
+}
+.Signup_Form form section span:nth-child(2){
+text-align:right;
+}
+
+
+
+
+/*POPUP*/
+#popup{
+visibility: hidden;
+min-width: 250px;
+margin-left: -125px;
+background-color: #333;
+color: #fff;
+text-align: center;
+border-radius: 2px;
+padding: 16px;
+position: fixed;
+z-index: 1;
+left: 50%;
+bottom: 30px;
+font-size: 17px;
+font-family: 'Oswald', sans-serif;
+}
+
+#popup.show {
+visibility: visible;
+-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+#popup a{
+margin:0 10px;
+}
+
+@-webkit-keyframes fadein {
+from {bottom: 0; opacity: 0;} 
+to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+from {bottom: 0; opacity: 0;}
+to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+from {bottom: 30px; opacity: 1;} 
+to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+from {bottom: 30px; opacity: 1;}
+to {bottom: 0; opacity: 0;}
+}
+
+@media (max-width:720px){
+.Signup_Form form{
+min-width:90%;
+}
+.Signup_Form a{
+font-size:12px;
+}
+}
+
+
+.credits{
+  background:#1e1e1e;
+  color:gray;
+  font-size:13px;
+  padding:10px;
+  position:fixed;
+  right:0;
+  bottom:20px;
+}
+
+
+
+.white-mode {
+    text-decoration: none;
+    padding: 17px 40px;
+    background-color: #DCC69C;
+    border-radius: 3px;
+    color: black;
+    transition: .35s ease-in-out;
+    position: absolute;
+    left: 15px;
+    bottom: 15px
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <!--GOOGLE FONTS-->
+<!--<link rel="preconnect" href="https://fonts.gstatic.com">-->
+<link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet"> 
+
+
+<div class="Signup_Form">
+<form action="validation.php" method="POST" id="login" class="animate">
+<i title="REMEMBER" onclick="savedetails()" class="fa fa-save"></i>
+<center>
+<h1>SIGN IN</h1>
+<input type="email" id="email" name="email" placeholder="Email Address*" required/>
+<input type="password" id="password" name="password" placeholder="Password*" required/>
+
+<button class="btn1" type="submit">SignIn</button>
+
+
+<a class="bnt1" href="reservation.html">SignIn</a>
+
+
+<section>
+<span><a href="#">Forgot Password?</a></span>
+<span><a href="signup.html">Don't have an account?</a></span>
+</section>
+</center>
+</form>
+
+
+
+</div>
+<a target="_blank" href="bookings.html" class="white-mode">home</a>
+<div id="popup"></div>
+
+
+
+  
+
+    </script>
+
+  
+
+</body>
+
+</html>
