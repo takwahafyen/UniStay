@@ -1,0 +1,73 @@
+# =============================================================================
+# Render Blueprint — StudentHousing Platform
+# Deploys: Laravel 11 App (Nginx + PHP-FPM) + PostgreSQL database
+# Docs: https://docs.render.com/infrastructure-as-code
+# =============================================================================
+
+services:
+  # ─────────────────────────────────────────────────
+  # Web Application: Laravel 11 + Nginx (Single Container)
+  # ─────────────────────────────────────────────────
+  - type: web
+    name: student-housing
+    runtime: docker
+    dockerfilePath: docker/php/Dockerfile
+    dockerContext: .
+    plan: free
+    region: frankfurt
+    branch: main
+    healthCheckPath: /
+    buildFilter:
+      paths:
+        - "**/*"
+    envVars:
+      # ── Laravel Core ──
+      - key: APP_NAME
+        value: StudentHousing
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_URL
+        fromService:
+          name: student-housing
+          type: web
+          property: url
+      - key: APP_KEY
+        generateValue: true
+
+      # ── Database (PostgreSQL managed by Render) ──
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DATABASE_URL
+        fromDatabase:
+          name: student-housing-db
+          property: connectionString
+
+      # ── Session & Cache (file-based for free tier) ──
+      - key: SESSION_DRIVER
+        value: file
+      - key: CACHE_STORE
+        value: file
+      - key: QUEUE_CONNECTION
+        value: sync
+
+      # ── Elasticsearch (disabled on free tier, enable if using Elastic Cloud / Bonsai.io) ──
+      - key: ELASTICSEARCH_ENABLED
+        value: "false"
+
+      # ── Mail (log driver for demo, switch to Mailgun/SES for production) ──
+      - key: MAIL_MAILER
+        value: log
+      - key: LOG_CHANNEL
+        value: stderr
+
+# ─────────────────────────────────────────────────
+# Managed PostgreSQL Database (Free Tier — 90 days)
+# ─────────────────────────────────────────────────
+databases:
+  - name: student-housing-db
+    plan: free
+    region: frankfurt
+    databaseName: student_housing
+    user: housing_user

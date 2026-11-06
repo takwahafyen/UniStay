@@ -1,10 +1,13 @@
 # 🎓 StudentHousing - Plateforme de Logements Étudiants
 
+[![🚀 Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Click_Here-success?style=for-the-badge&logo=render)](https://student-housing.onrender.com)
+
 [![CI Pipeline](https://img.shields.io/badge/CI-GitHub_Actions-2ea44f?logo=github-actions)](https://github.com/)
 [![PHP](https://img.shields.io/badge/PHP-8.3-777bb4?logo=php)](https://www.php.net/)
 [![Laravel](https://img.shields.io/badge/Laravel-11-ff2d20?logo=laravel)](https://laravel.com/)
 [![Elasticsearch](https://img.shields.io/badge/Elasticsearch-8.13-005571?logo=elasticsearch)](https://www.elastic.co/)
 [![Docker](https://img.shields.io/badge/Docker-Multi--Container-2496ed?logo=docker)](https://www.docker.com/)
+[![Deployed on Render](https://img.shields.io/badge/Hosted_on-Render-46e3b7?logo=render)](https://render.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > **Plateforme web moderne d'hébergement pour étudiants**, réarchitecturée selon les standards de l'ingénierie logicielle senior : conteneurisation Docker complète, moteur de recherche full-text & géo-spatial avec **Elasticsearch 8**, sécurisation OWASP Top 10 et tests automatisés.
