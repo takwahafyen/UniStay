@@ -29,10 +29,30 @@
             </nav>
 
             <div class="flex items-center gap-3">
-                <a href="{{ route('properties.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition">
+                <a href="{{ route('properties.index') }}" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 transition">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <span>Rechercher</span>
                 </a>
+
+                @auth
+                    <div class="flex items-center gap-3 pl-2 border-l border-slate-200">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700">
+                            {{ Auth::user()->name }}
+                        </span>
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="text-xs text-slate-500 hover:text-rose-600 font-medium transition" title="Se déconnecter">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span class="hidden sm:inline">Quitter</span>
+                            </button>
+                        </form>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Connexion</span>
+                    </a>
+                @endauth
             </div>
         </div>
     </header>
