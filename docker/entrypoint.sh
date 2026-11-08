@@ -16,6 +16,11 @@ if [ -n "$DATABASE_URL" ] || [ -n "$DB_HOST" ]; then
     done
 fi
 
+# Auto-detect Render external URL
+if [ -n "$RENDER_EXTERNAL_URL" ]; then
+    export APP_URL="$RENDER_EXTERNAL_URL"
+fi
+
 # Generate APP_KEY if not set
 if [ -z "$APP_KEY" ]; then
     echo "🔑 Generating application key..."
