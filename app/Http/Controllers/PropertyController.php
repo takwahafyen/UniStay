@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Amenity;
 use App\Models\Property;
 use App\Services\Elasticsearch\PropertySearchService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class PropertyController extends Controller
 {

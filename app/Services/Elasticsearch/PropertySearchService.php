@@ -113,18 +113,23 @@ class PropertySearchService
 
         // Execute Elasticsearch Query
         try {
-            $response = $this->client->search([
+            /** @var mixed $rawResponse */
+            $rawResponse = $this->client->search([
                 'index' => $this->indexName,
                 'body' => $body,
             ]);
+            /** @var array<string, mixed> $response */
+            $response = is_array($rawResponse) ? $rawResponse : (method_exists($rawResponse, 'asArray') ? $rawResponse->asArray() : (array) $rawResponse);
 
+            /** @var array<int, array<string, mixed>> $hits */
             $hits = $response['hits']['hits'] ?? [];
-            $total = $response['hits']['total']['value'] ?? 0;
+            $total = (int) ($response['hits']['total']['value'] ?? 0);
+            /** @var array<string, mixed> $aggs */
             $aggs = $response['aggregations'] ?? [];
 
-            $results = collect($hits)->map(fn ($hit) => array_merge(
+            $results = collect($hits)->map(fn (array $hit): array => array_merge(
                 ['id' => (int) $hit['_id']],
-                $hit['_source']
+                (array) $hit['_source']
             ));
 
             return [
