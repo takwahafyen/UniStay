@@ -30,7 +30,7 @@ services:
       - key: APP_URL
         value: https://student-housing.onrender.com
       - key: APP_KEY
-        generateValue: true
+        value: base64:mP2aK9vL5nQ8xR1sU4wY7zB0dE3gH6jM9pS2vY5bE8h=
 
       # ── Database (PostgreSQL managed by Render) ──
       - key: DB_CONNECTION
