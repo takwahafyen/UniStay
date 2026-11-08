@@ -62,7 +62,7 @@ WORKDIR /var/www
 COPY . /var/www
 
 # Install Composer dependencies (no dev packages)
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress --no-audit
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
 
 # Set permissions for Laravel storage and cache
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
