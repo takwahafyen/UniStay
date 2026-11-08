@@ -70,6 +70,17 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
 
 # Copy Nginx config for single-container mode
 COPY docker/nginx/conf.d/app.conf /etc/nginx/sites-available/default
+RUN rm -f /etc/nginx/sites-enabled/default \
+    && ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
+# Create storage and bootstrap cache directories if they don't exist
+RUN mkdir -p /var/www/storage/framework/cache \
+    && mkdir -p /var/www/storage/framework/sessions \
+    && mkdir -p /var/www/storage/framework/views \
+    && mkdir -p /var/www/storage/logs \
+    && mkdir -p /var/www/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
+    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 # Copy Supervisor config (manages both Nginx + PHP-FPM)
 COPY docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
