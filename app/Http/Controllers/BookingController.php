@@ -14,7 +14,8 @@ class BookingController extends Controller
 {
     public function __construct(
         protected BookingService $bookingService
-    ) {}
+    ) {
+    }
 
     /**
      * Display current user's bookings (Anti-BOLA / IDOR)

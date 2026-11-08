@@ -1,0 +1,29 @@
+{
+    "preset": "laravel",
+    "exclude": [
+        "storage",
+        "bootstrap/cache"
+    ],
+    "notName": [
+        "admin*.php",
+        "availabilityy.php",
+        "book*.php",
+        "cart.php",
+        "connect.php",
+        "connex.php",
+        "dashboard.php",
+        "header*.php",
+        "house*.php",
+        "index.php",
+        "login*.php",
+        "logout*.php",
+        "message*.php",
+        "mod.php",
+        "register*.php",
+        "sendmssg.php",
+        "update.php",
+        "user_header.php",
+        "user_page.php",
+        "validation.php"
+    ]
+}

@@ -12,7 +12,8 @@ class PropertyController extends Controller
 {
     public function __construct(
         protected PropertySearchService $searchService
-    ) {}
+    ) {
+    }
 
     /**
      * Display list of properties with Elasticsearch search and filters

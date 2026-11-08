@@ -23,11 +23,11 @@ class BookingService
         $endDate = Carbon::parse($checkOut)->startOfDay();
 
         if ($startDate->isPast()) {
-            throw new InvalidArgumentException("La date d'arrivée ne peut pas être dans le passé.");
+            throw new InvalidArgumentException('La date d\'arrivée ne peut pas être dans le passé.');
         }
 
         if ($endDate->lessThanOrEqualTo($startDate)) {
-            throw new InvalidArgumentException("La date de départ doit être postérieure à la date d'arrivée.");
+            throw new InvalidArgumentException('La date de départ doit être postérieure à la date d\'arrivée.');
         }
 
         $monthsCount = max(1, $startDate->diffInMonths($endDate));
@@ -37,8 +37,8 @@ class BookingService
             // Pessimistic lock on the property to prevent concurrent double-booking
             $lockedProperty = Property::where('id', $property->id)->lockForUpdate()->firstOrFail();
 
-            if (!$lockedProperty->is_available || $lockedProperty->status !== 'published') {
-                throw new InvalidArgumentException("Ce logement n'est pas disponible à la location.");
+            if (! $lockedProperty->is_available || $lockedProperty->status !== 'published') {
+                throw new InvalidArgumentException('Ce logement n\'est pas disponible à la location.');
             }
 
             // Check if there is an overlapping confirmed or pending booking
@@ -55,11 +55,11 @@ class BookingService
                 ->exists();
 
             if ($hasOverlap) {
-                throw new InvalidArgumentException("Ce logement est déjà réservé sur la période sélectionnée.");
+                throw new InvalidArgumentException('Ce logement est déjà réservé sur la période sélectionnée.');
             }
 
             return Booking::create([
-                'reference' => 'BK-' . strtoupper(Str::random(10)),
+                'reference' => 'BK-'.strtoupper(Str::random(10)),
                 'property_id' => $lockedProperty->id,
                 'student_id' => $student->id,
                 'check_in' => $startDate->toDateString(),
@@ -77,8 +77,8 @@ class BookingService
      */
     public function cancelBooking(Booking $booking, User $user): bool
     {
-        if ($booking->student_id !== $user->id && $booking->property->owner_id !== $user->id && !$user->isAdmin()) {
-            throw new InvalidArgumentException("Action non autorisée.");
+        if ($booking->student_id !== $user->id && $booking->property->owner_id !== $user->id && ! $user->isAdmin()) {
+            throw new InvalidArgumentException('Action non autorisée.');
         }
 
         if ($booking->status === 'cancelled') {

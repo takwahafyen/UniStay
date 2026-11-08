@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 class PropertySearchService
 {
     protected Client $client;
+
     protected string $indexName = 'properties_index';
 
     public function __construct()

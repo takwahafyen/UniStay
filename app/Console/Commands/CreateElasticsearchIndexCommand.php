@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 class CreateElasticsearchIndexCommand extends Command
 {
     protected $signature = 'elastic:init-housing';
+
     protected $description = 'Initialize and map the Elasticsearch index for student housing properties';
 
     public function handle(): int

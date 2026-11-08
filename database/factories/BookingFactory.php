@@ -16,7 +16,7 @@ class BookingFactory extends Factory
     public function definition(): array
     {
         return [
-            'reference' => 'BK-' . strtoupper(Str::random(10)),
+            'reference' => 'BK-'.strtoupper(Str::random(10)),
             'property_id' => Property::factory(),
             'student_id' => User::factory(),
             'check_in' => now()->addDays(2)->toDateString(),

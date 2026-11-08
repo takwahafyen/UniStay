@@ -20,7 +20,7 @@ class BookingServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->service = new BookingService();
+        $this->service = new BookingService;
     }
 
     public function test_cannot_book_with_past_date(): void
@@ -30,7 +30,7 @@ class BookingServiceTest extends TestCase
         $property = Property::factory()->create(['owner_id' => $owner->id]);
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("La date d'arrivée ne peut pas être dans le passé.");
+        $this->expectExceptionMessage('La date d\'arrivée ne peut pas être dans le passé.');
 
         $this->service->createBooking(
             property: $property,
@@ -47,7 +47,7 @@ class BookingServiceTest extends TestCase
         $property = Property::factory()->create(['owner_id' => $owner->id]);
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("La date de départ doit être postérieure à la date d'arrivée.");
+        $this->expectExceptionMessage('La date de départ doit être postérieure à la date d\'arrivée.');
 
         $this->service->createBooking(
             property: $property,
@@ -71,7 +71,7 @@ class BookingServiceTest extends TestCase
         ]);
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Action non autorisée.");
+        $this->expectExceptionMessage('Action non autorisée.');
 
         $this->service->cancelBooking($booking, $intruder);
     }

@@ -19,7 +19,7 @@ class PropertyFactory extends Factory
         return [
             'owner_id' => User::factory()->create(['role' => 'owner'])->id,
             'title' => $title,
-            'slug' => Str::slug($title) . '-' . fake()->unique()->randomNumber(4),
+            'slug' => Str::slug($title).'-'.fake()->unique()->randomNumber(4),
             'description' => fake()->paragraph(),
             'type' => fake()->randomElement(['studio', 'apartment', 'room', 'shared_flat']),
             'price_monthly' => fake()->randomFloat(2, 200, 1000),
