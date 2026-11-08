@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -30,10 +32,10 @@ use Laravel\Scout\Searchable;
  * @property bool $is_furnished
  * @property bool $is_available
  * @property string $status
- * @property \Illuminate\Database\Eloquent\Collection<int, Amenity> $amenities
- * @property \Illuminate\Database\Eloquent\Collection<int, PropertyImage> $images
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property Collection<int, Amenity> $amenities
+ * @property Collection<int, PropertyImage> $images
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Property extends Model
 {
