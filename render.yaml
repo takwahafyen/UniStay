@@ -28,7 +28,7 @@ services:
       - key: APP_DEBUG
         value: "false"
       - key: APP_URL
-        value: https://student-housing.onrender.com
+        value: https://student-housing-zvgu.onrender.com
       - key: APP_KEY
         value: base64:mP2aK9vL5nQ8xR1sU4wY7zB0dE3gH6jM9pS2vY5bE8h=
 

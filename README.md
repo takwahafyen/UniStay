@@ -1,6 +1,6 @@
 # 🎓 StudentHousing - Plateforme de Logements Étudiants
 
-[![🚀 Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Click_Here-success?style=for-the-badge&logo=render)](https://student-housing.onrender.com)
+[![🚀 Live Demo](https://img.shields.io/badge/🚀_Live_Demo-student--housing--zvgu.onrender.com-success?style=for-the-badge&logo=render)](https://student-housing-zvgu.onrender.com/)
 
 [![CI Pipeline](https://img.shields.io/badge/CI-GitHub_Actions-2ea44f?logo=github-actions)](https://github.com/)
 [![PHP](https://img.shields.io/badge/PHP-8.3-777bb4?logo=php)](https://www.php.net/)
@@ -138,6 +138,23 @@ docker compose exec app composer format
 ├── docker-compose.yml             # Orchestration 6 conteneurs
 └── phpstan.neon                   # Configuration analyse statique niveau 8
 ```
+
+---
+
+## 🌐 Déploiement en Ligne (Production)
+
+L'application est déployée publiquement sur **Render** via son Blueprint d'infrastructure as Code ([`render.yaml`](file:///c:/Users/DEll/Desktop/projet-logement-etudiants-master/projet-logement-etudiants-master/render.yaml)) :
+
+* **URL Publique :** [https://student-housing-zvgu.onrender.com/](https://student-housing-zvgu.onrender.com/)
+* **Stack Production :** Conteneur Docker unifié (Nginx + PHP 8.3 FPM gérés par Supervisor) + PostgreSQL managé.
+
+### 🔑 Comptes de démonstration pré-configurés :
+
+| Rôle | Email | Mot de passe | Permissions |
+| :--- | :--- | :--- | :--- |
+| **Étudiant (Locataire)** | `student@studenthousing.com` | `StudentPass123!` | Recherche, réservation, gestion de ses réservations |
+| **Bailleur (Propriétaire)** | `owner@studenthousing.com` | `OwnerPass123!` | Publication et gestion d'annonces de logements |
+| **Administrateur** | `admin@studenthousing.com` | `AdminPass123!` | Modération, supervision et gestion globale |
 
 ---
 
