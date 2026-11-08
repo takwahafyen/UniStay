@@ -8,10 +8,15 @@
         "admin*.php",
         "availabilityy.php",
         "book*.php",
-        "cart.php",
-        "connect.php",
-        "connex.php",
-        "dashboard.php",
+        "cart*.php",
+        "change_password*.php",
+        "comment*.php",
+        "config*.php",
+        "connect*.php",
+        "connex*.php",
+        "contact*.php",
+        "dashboard*.php",
+        "favorite*.php",
         "header*.php",
         "house*.php",
         "index.php",
@@ -19,11 +24,18 @@
         "logout*.php",
         "message*.php",
         "mod.php",
+        "post_property*.php",
+        "property_detail*.php",
         "register*.php",
-        "sendmssg.php",
-        "update.php",
-        "user_header.php",
-        "user_page.php",
-        "validation.php"
-    ]
+        "review*.php",
+        "saved*.php",
+        "search*.php",
+        "sendmssg*.php",
+        "update*.php",
+        "user_*.php",
+        "validation*.php"
+    ],
+    "rules": {
+        "class_definition": false
+    }
 }

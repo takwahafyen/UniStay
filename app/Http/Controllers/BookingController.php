@@ -12,10 +12,7 @@ use Illuminate\View\View;
 
 class BookingController extends Controller
 {
-    public function __construct(
-        protected BookingService $bookingService
-    ) {
-    }
+    public function __construct(protected BookingService $bookingService) {}
 
     /**
      * Display current user's bookings (Anti-BOLA / IDOR)
@@ -69,6 +66,7 @@ class BookingController extends Controller
     {
         try {
             $this->bookingService->cancelBooking($booking, Auth::user());
+
             return back()->with('success', "La réservation {$booking->reference} a été annulée.");
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());

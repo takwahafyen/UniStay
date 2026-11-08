@@ -101,7 +101,7 @@ class PropertySearchService
             'size' => $perPage,
             'query' => [
                 'bool' => [
-                    'must' => !empty($must) ? $must : [['match_all' => new \stdClass()]],
+                    'must' => !empty($must) ? $must : [['match_all' => new \stdClass]],
                     'filter' => $filter,
                 ],
             ],

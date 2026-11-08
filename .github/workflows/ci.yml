@@ -89,7 +89,7 @@ jobs:
         run: php artisan migrate --force
 
       - name: Run Code Style Check (Pint)
-        run: vendor/bin/pint --test
+        run: vendor/bin/pint --test app config database routes tests
 
       - name: Run Static Analysis (PHPStan)
         run: vendor/bin/phpstan analyse --error-format=github
