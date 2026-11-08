@@ -24,9 +24,7 @@ class PropertySearchService
     /**
      * Search properties with multi-criteria filters and geo-location
      *
-     * @param array<string, mixed> $criteria
-     * @param int $page
-     * @param int $perPage
+     * @param  array<string, mixed>  $criteria
      * @return array{results: Collection, total: int, facets: array<string, mixed>}
      */
     public function search(array $criteria = [], int $page = 1, int $perPage = 12): array
