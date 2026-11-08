@@ -4,7 +4,6 @@ namespace App\Services\Elasticsearch;
 
 use Elastic\Elasticsearch\Client;
 use Elastic\Elasticsearch\ClientBuilder;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class PropertySearchService
@@ -24,7 +23,6 @@ class PropertySearchService
     /**
      * Search properties with multi-criteria filters and geo-location
      *
-     * @param  array<string, mixed>  $criteria
      * @return array{results: Collection, total: int, facets: array<string, mixed>}
      */
     public function search(array $criteria = [], int $page = 1, int $perPage = 12): array
