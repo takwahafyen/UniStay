@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 class CreateElasticsearchIndexCommand extends Command
 {
     protected $signature = 'elastic:init-housing';
+
     protected $description = 'Initialize and map the Elasticsearch index for student housing properties';
 
     public function handle(): int
@@ -19,7 +20,10 @@ class CreateElasticsearchIndexCommand extends Command
         $this->info("Connecting to Elasticsearch at {$hosts[0]}...");
 
         // Delete if already exists
-        if ($client->indices()->exists(['index' => $indexName])->asBool()) {
+        /** @var mixed $existsResponse */
+        $existsResponse = $client->indices()->exists(['index' => $indexName]);
+        $exists = is_object($existsResponse) && method_exists($existsResponse, 'asBool') ? $existsResponse->asBool() : (bool) $existsResponse;
+        if ($exists) {
             $this->warn("Index '{$indexName}' already exists. Deleting it...");
             $client->indices()->delete(['index' => $indexName]);
         }

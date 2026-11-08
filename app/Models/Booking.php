@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $total_amount
  * @property string $status
  * @property string|null $notes
+ * @property Property $property
+ * @property User $student
  */
 class Booking extends Model
 {

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -30,6 +32,10 @@ use Laravel\Scout\Searchable;
  * @property bool $is_furnished
  * @property bool $is_available
  * @property string $status
+ * @property Collection<int, Amenity> $amenities
+ * @property Collection<int, PropertyImage> $images
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Property extends Model
 {
@@ -85,12 +91,18 @@ class Property extends Model
 
     public function images(): HasMany
     {
-        return $this->hasMany(PropertyImage::class)->orderBy('order');
+        /** @var HasMany $relation */
+        $relation = $this->hasMany(PropertyImage::class)->orderBy('order');
+
+        return $relation;
     }
 
     public function primaryImage(): HasMany
     {
-        return $this->hasMany(PropertyImage::class)->where('is_primary', true);
+        /** @var HasMany $relation */
+        $relation = $this->hasMany(PropertyImage::class)->where('is_primary', true);
+
+        return $relation;
     }
 
     public function bookings(): HasMany

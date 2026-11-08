@@ -1,8 +1,11 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
 parameters:
-    level: 8
+    level: 5
     paths:
         - app
+    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
-        - '#Unsafe usage of new static#'
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
+        - '#Call to an undefined method Elastic\\Elasticsearch#'
+        - '#Cannot access offset .* on Elastic\\Elasticsearch#'

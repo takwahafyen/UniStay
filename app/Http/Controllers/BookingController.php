@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Property;
+use App\Models\User;
 use App\Services\BookingService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 class BookingController extends Controller
 {
-    public function __construct(
-        protected BookingService $bookingService
-    ) {}
+    public function __construct(protected BookingService $bookingService) {}
 
     /**
      * Display current user's bookings (Anti-BOLA / IDOR)
      */
     public function index(): View
     {
+        /** @var User $user */
         $user = Auth::user();
 
         $bookings = Booking::with(['property.images', 'property.owner'])
@@ -45,10 +45,13 @@ class BookingController extends Controller
             'notes' => 'nullable|string|max:500',
         ]);
 
+        /** @var User $user */
+        $user = Auth::user();
+
         try {
             $booking = $this->bookingService->createBooking(
                 property: $property,
-                student: Auth::user(),
+                student: $user,
                 checkIn: $validated['check_in'],
                 checkOut: $validated['check_out'],
                 guests: (int) $validated['guests_count'],
@@ -66,8 +69,12 @@ class BookingController extends Controller
      */
     public function cancel(Booking $booking): RedirectResponse
     {
+        /** @var User $user */
+        $user = Auth::user();
+
         try {
-            $this->bookingService->cancelBooking($booking, Auth::user());
+            $this->bookingService->cancelBooking($booking, $user);
+
             return back()->with('success', "La réservation {$booking->reference} a été annulée.");
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());

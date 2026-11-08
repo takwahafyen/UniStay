@@ -25,23 +25,27 @@ jobs:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
-      elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
-        env:
-          discovery.type: single-node
-          xpack.security.enabled: false
-          ES_JAVA_OPTS: "-Xms512m -Xmx512m"
-        ports:
-          - 9200:9200
-        options: >-
-          --health-cmd "curl -s http://localhost:9200/_cluster/health | grep -q '\"status\":\"green\"\\|\"status\":\"yellow\"'"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 10
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Start Elasticsearch
+        run: |
+          docker run -d --name elasticsearch \
+            -p 9200:9200 \
+            -e "discovery.type=single-node" \
+            -e "xpack.security.enabled=false" \
+            -e "ES_JAVA_OPTS=-Xms512m -Xmx512m" \
+            docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+          
+          echo "Waiting for Elasticsearch to become ready..."
+          for i in {1..30}; do
+            if curl -s http://localhost:9200/_cluster/health | grep -q 'green\|yellow'; then
+              echo "✅ Elasticsearch is ready!"
+              break
+            fi
+            sleep 2
+          done
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -61,20 +65,38 @@ jobs:
           key: ${{ runner.os }}-php-${{ matrix.php-version }}-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-php-${{ matrix.php-version }}-
 
+      - name: Prepare Laravel Directories & Permissions
+        run: |
+          mkdir -p bootstrap/cache storage/framework/cache storage/framework/sessions storage/framework/views storage/logs
+          chmod -R 777 bootstrap/cache storage
+
       - name: Install Dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
       - name: Copy .env
         run: cp .env.example .env
 
+      - name: Generate Application Key
+        run: php artisan key:generate
+
+      - name: Run Database Migrations
+        env:
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: student_housing_test
+          DB_USERNAME: root
+          DB_PASSWORD: root
+        run: php artisan migrate --force
+
       - name: Run Code Style Check (Pint)
-        run: vendor/bin/pint --test
+        run: vendor/bin/pint --test app config database routes tests
 
       - name: Run Static Analysis (PHPStan)
         run: vendor/bin/phpstan analyse --error-format=github
 
       - name: Run Test Suite
         env:
+          DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
           DB_DATABASE: student_housing_test
