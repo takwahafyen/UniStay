@@ -7,8 +7,8 @@
     "require": {
         "php": "^8.2",
         "babenkoivan/elastic-scout-driver": "^3.1",
-        "elastic/elasticsearch-php": "^8.13",
-        "laravel/framework": "^11.9",
+        "elasticsearch/elasticsearch": "^8.13",
+        "laravel/framework": "^11.0",
         "laravel/scout": "^10.8",
         "laravel/tinker": "^2.9"
     },
@@ -56,6 +56,14 @@
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
+        "audit": {
+            "block": false
+        },
+        "policy": {
+            "advisories": {
+                "block": false
+            }
+        },
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
