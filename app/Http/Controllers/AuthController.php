@@ -92,7 +92,7 @@ class AuthController extends Controller
                 return redirect()->route('owner.properties.index')->with('success', 'Bienvenue dans votre espace propriétaire.');
             }
 
-            return redirect()->intended(route('properties.index'));
+            return redirect()->intended(route('bookings.index'));
         }
 
         return back()->withInput($request->only('email', 'remember'))->withErrors([
