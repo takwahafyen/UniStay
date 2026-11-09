@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr" class="h-full">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'StudentHousing - Logements Étudiants Clés en Main')</title>
+    <title>@yield('title', __('StudentHousing - Turnkey Student Housing'))</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -35,6 +35,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         [x-cloak] { display: none !important; }
+        @if(app()->getLocale() === 'ar')
+        body { font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif; }
+        @endif
     </style>
 </head>
 <body class="flex flex-col min-h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased transition-colors duration-200">
@@ -50,15 +53,22 @@
             </a>
 
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
-                <a href="{{ route('properties.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Explorer les logements</a>
-                <a href="{{ route('bookings.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Mes Réservations</a>
+                <a href="{{ route('properties.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">{{ __('Explore Properties') }}</a>
+                <a href="{{ route('bookings.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">{{ __('My Bookings') }}</a>
             </nav>
 
             <div class="flex items-center gap-3">
                 <a href="{{ route('properties.index') }}" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <span>Rechercher</span>
+                    <span>{{ __('Search') }}</span>
                 </a>
+
+                <!-- Modern 2026 Language Switcher (EN / FR / AR) -->
+                <div class="flex items-center rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100/80 dark:bg-slate-800 p-1 text-xs font-semibold">
+                    <a href="{{ route('lang.switch', 'en') }}" title="English" class="px-2 py-1 rounded-lg transition {{ app()->getLocale() === 'en' ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white' }}">EN</a>
+                    <a href="{{ route('lang.switch', 'fr') }}" title="Français" class="px-2 py-1 rounded-lg transition {{ app()->getLocale() === 'fr' ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white' }}">FR</a>
+                    <a href="{{ route('lang.switch', 'ar') }}" title="العربية" class="px-2 py-1 rounded-lg transition {{ app()->getLocale() === 'ar' ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white' }}">عربي</a>
+                </div>
 
                 <!-- Modern 2026 Light / Dark Mode Toggle Button -->
                 <button type="button" id="theme-toggle" onclick="toggleTheme()" 
@@ -75,16 +85,16 @@
                         </span>
                         <form action="{{ route('logout') }}" method="POST" class="inline">
                             @csrf
-                            <button type="submit" class="text-xs text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 font-medium transition" title="Se déconnecter">
+                            <button type="submit" class="text-xs text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 font-medium transition" title="{{ __('Logout') }}">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                <span class="hidden sm:inline">Quitter</span>
+                                <span class="hidden sm:inline">{{ __('Leave') }}</span>
                             </button>
                         </form>
                     </div>
                 @else
                     <a href="{{ route('login') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition">
                         <i class="fa-solid fa-user"></i>
-                        <span>Connexion</span>
+                        <span>{{ __('Login') }}</span>
                     </a>
                 @endauth
             </div>
@@ -113,7 +123,7 @@
     <!-- Footer -->
     <footer class="mt-auto bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-center text-sm text-slate-500 dark:text-slate-400 transition-colors">
         <div class="max-w-7xl mx-auto px-4">
-            <p>&copy; {{ date('Y') }} StudentHousing Platform. Propulsé par Laravel 11 & Elasticsearch.</p>
+            <p>&copy; {{ date('Y') }} {{ __('StudentHousing Platform. Powered by Laravel 11 & Elasticsearch.') }}</p>
         </div>
     </footer>
 

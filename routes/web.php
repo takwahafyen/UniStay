@@ -5,6 +5,14 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
+// Language Switcher Route
+Route::get('/lang/{locale}', function (string $locale) {
+    if (in_array($locale, ['en', 'fr', 'ar'], true)) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
 // Public Housing Routes
 Route::get('/', [PropertyController::class, 'index'])->name('properties.index');
 Route::get('/logement/{slug}', [PropertyController::class, 'show'])->name('properties.show');
