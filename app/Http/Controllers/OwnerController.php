@@ -6,6 +6,7 @@ use App\Models\Amenity;
 use App\Models\Booking;
 use App\Models\Property;
 use App\Models\PropertyImage;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -64,7 +65,7 @@ class OwnerController extends Controller
             'amenities.*' => 'exists:amenities,id',
         ]);
 
-        $slug = Str::slug($validated['title']) . '-' . Str::lower(Str::random(6));
+        $slug = Str::slug($validated['title']).'-'.Str::lower(Str::random(6));
 
         $property = Property::create([
             'owner_id' => Auth::id(),
@@ -174,7 +175,6 @@ class OwnerController extends Controller
      */
     public function toggleAvailability(Property $property): RedirectResponse
     {
-        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         if ($property->owner_id !== $user->id && ! $user->isAdmin()) {
@@ -224,7 +224,6 @@ class OwnerController extends Controller
      */
     public function updateBookingStatus(Request $request, Booking $booking): RedirectResponse
     {
-        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         if ($booking->property->owner_id !== $user->id && ! $user->isAdmin()) {
