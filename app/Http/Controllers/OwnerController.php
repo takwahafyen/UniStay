@@ -64,7 +64,7 @@ class OwnerController extends Controller
             'amenities.*' => 'exists:amenities,id',
         ]);
 
-        $slug = Str::slug($validated['title']).'-'.Str::lower(Str::random(6));
+        $slug = Str::slug($validated['title']) . '-' . Str::lower(Str::random(6));
 
         $property = Property::create([
             'owner_id' => Auth::id(),
@@ -165,7 +165,7 @@ class OwnerController extends Controller
         }
 
         return redirect()->route('owner.properties.index')
-            ->with('success', "Annonce mise à jour avec succès.");
+            ->with('success', 'Annonce mise à jour avec succès.');
     }
 
     /**
@@ -174,7 +174,10 @@ class OwnerController extends Controller
      */
     public function toggleAvailability(Property $property): RedirectResponse
     {
-        if ($property->owner_id !== Auth::id() && ! Auth::user()->isAdmin()) {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        if ($property->owner_id !== $user->id && ! $user->isAdmin()) {
             abort(403);
         }
 
@@ -221,7 +224,10 @@ class OwnerController extends Controller
      */
     public function updateBookingStatus(Request $request, Booking $booking): RedirectResponse
     {
-        if ($booking->property->owner_id !== Auth::id() && ! Auth::user()->isAdmin()) {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        if ($booking->property->owner_id !== $user->id && ! $user->isAdmin()) {
             abort(403);
         }
 
