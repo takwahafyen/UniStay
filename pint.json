@@ -4,37 +4,6 @@
         "storage",
         "bootstrap/cache"
     ],
-    "notName": [
-        "admin*.php",
-        "availabilityy.php",
-        "book*.php",
-        "cart*.php",
-        "change_password*.php",
-        "comment*.php",
-        "config*.php",
-        "connect*.php",
-        "connex*.php",
-        "contact*.php",
-        "dashboard*.php",
-        "favorite*.php",
-        "header*.php",
-        "house*.php",
-        "index.php",
-        "login*.php",
-        "logout*.php",
-        "message*.php",
-        "mod.php",
-        "post_property*.php",
-        "property_detail*.php",
-        "register*.php",
-        "review*.php",
-        "saved*.php",
-        "search*.php",
-        "sendmssg*.php",
-        "update*.php",
-        "user_*.php",
-        "validation*.php"
-    ],
     "rules": {
         "class_definition": false
     }
