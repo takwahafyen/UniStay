@@ -55,7 +55,26 @@
 
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
                 <a href="{{ route('properties.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">{{ __('Explore Properties') }}</a>
-                <a href="{{ route('bookings.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">{{ __('My Bookings') }}</a>
+                @auth
+                    @if(Auth::user()->isAdmin())
+                        <a href="{{ route('admin.dashboard') }}" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline flex items-center gap-1.5">
+                            <i class="fa-solid fa-gauge"></i> Admin Dashboard
+                        </a>
+                        <a href="{{ route('admin.users.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Utilisateurs</a>
+                        <a href="{{ route('admin.properties.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Toutes les Annonces</a>
+                        <a href="{{ route('admin.bookings.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Réservations</a>
+                    @elseif(Auth::user()->isOwner())
+                        <a href="{{ route('owner.properties.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition flex items-center gap-1">
+                            <i class="fa-solid fa-house-chimney"></i> Mes Logements
+                        </a>
+                        <a href="{{ route('owner.properties.create') }}" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-plus-circle"></i> Publier une annonce
+                        </a>
+                        <a href="{{ route('owner.bookings.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Réservations reçues</a>
+                    @else
+                        <a href="{{ route('bookings.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">{{ __('My Bookings') }}</a>
+                    @endif
+                @endauth
             </nav>
 
             <div class="flex items-center gap-3">
@@ -81,7 +100,14 @@
 
                 @auth
                     <div class="flex items-center gap-3 pl-2 border-l border-slate-200 dark:border-slate-800">
-                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-800/60">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-800/60 flex items-center gap-1.5">
+                            @if(Auth::user()->isAdmin())
+                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Admin:
+                            @elseif(Auth::user()->isOwner())
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Bailleur:
+                            @else
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Étudiant:
+                            @endif
                             {{ Auth::user()->name }}
                         </span>
                         <form action="{{ route('logout') }}" method="POST" class="inline">
@@ -93,10 +119,16 @@
                         </form>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition">
-                        <i class="fa-solid fa-user"></i>
-                        <span>{{ __('Login') }}</span>
-                    </a>
+                    <div class="flex items-center gap-2">
+                        <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+                            <i class="fa-solid fa-user"></i>
+                            <span>{{ __('Login') }}</span>
+                        </a>
+                        <a href="{{ route('register') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm transition">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>Inscription</span>
+                        </a>
+                    </div>
                 @endauth
             </div>
         </div>

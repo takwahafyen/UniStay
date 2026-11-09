@@ -58,6 +58,28 @@
         </button>
     </form>
 
+    <!-- Alternative: Instant Email Code (OTP) / Google Login -->
+    <div class="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800">
+        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 text-center mb-3">
+            <i class="fa-brands fa-google text-rose-500 mr-1"></i> Connexion avec Code de validation par Email / Google
+        </p>
+        <form action="{{ route('login.otp.send') }}" method="POST" class="flex gap-2">
+            @csrf
+            <input type="email" name="email" required placeholder="votre-email@student.com" 
+                class="flex-1 px-3 py-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white outline-none">
+            <button type="submit" class="px-3 py-2 bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 text-white text-xs font-semibold rounded-xl transition flex items-center gap-1.5 whitespace-nowrap">
+                <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                <span>Recevoir Code</span>
+            </button>
+        </form>
+    </div>
+
+    <!-- Registration Link for House Owners & Students -->
+    <div class="mt-4 text-center text-xs text-slate-500 dark:text-slate-400">
+        Vous êtes nouveau ? 
+        <a href="{{ route('register') }}" class="font-bold text-indigo-600 dark:text-indigo-400 hover:underline">Créer un compte Bailleur ou Étudiant</a>
+    </div>
+
     <!-- Quick Fill for Demo Reviewers -->
     <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
         <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 text-center mb-3">{{ __('Demo Accounts (Quick Autofill)') }}</p>
