@@ -58,7 +58,7 @@ class BookingService
                 throw new InvalidArgumentException('Ce logement est déjà réservé sur la période sélectionnée.');
             }
 
-            return Booking::create([
+            $booking = Booking::create([
                 'reference' => 'BK-'.strtoupper(Str::random(10)),
                 'property_id' => $lockedProperty->id,
                 'student_id' => $student->id,
@@ -69,6 +69,11 @@ class BookingService
                 'status' => 'pending',
                 'notes' => $notes,
             ]);
+
+            // As required: once booked, the property becomes inactive/unavailable
+            $lockedProperty->update(['is_available' => false]);
+
+            return $booking;
         });
     }
 
@@ -89,6 +94,16 @@ class BookingService
             'status' => 'cancelled',
             'cancelled_at' => now(),
         ]);
+
+        // Re-enable property availability if no other active bookings remain
+        $hasOtherActive = Booking::where('property_id', $booking->property_id)
+            ->where('id', '!=', $booking->id)
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->exists();
+
+        if (! $hasOtherActive) {
+            $booking->property->update(['is_available' => true]);
+        }
 
         return true;
     }
